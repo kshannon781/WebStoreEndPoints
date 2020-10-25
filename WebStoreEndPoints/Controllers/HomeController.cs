@@ -70,8 +70,8 @@ namespace WebStoreEndPoints.Controllers
         }
 
 
-        public ViewResult GetMaxPriceGroup() => View();
-        [HttpPost]
+        //public ViewResult GetMaxPriceGroup() => View();
+        //[HttpPost]
         public async Task<IActionResult> GetMaxPriceGroup(StoreItem storeItem)
         {
             List<StoreItem> storeList = new List<StoreItem>();
