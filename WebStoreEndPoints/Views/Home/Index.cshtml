@@ -26,7 +26,7 @@
             <tr>
                 <td>@r.Id.ToString().PadLeft(3,'0')</td>
                 <td>@r.ItemName</td>
-                <td>@r.Cost</td>
+                <td>$@r.Cost</td>
                 <td>
                     <a asp-action="UpdateStoreItemPatch" asp-route-id="@r.Id">
                         <b>Update</b>

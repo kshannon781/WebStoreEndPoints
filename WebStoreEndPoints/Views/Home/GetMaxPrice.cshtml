@@ -1,9 +1,9 @@
 ﻿@model StoreItem
 @{ Layout = "_Layout"; ViewBag.Title = "Get Max Price";}
 
-<h2>Get Max Price<a asp-action="Index" class="btn btn-sm btn-primary">Back</a></h2>
+<h2>Get Max Price  <a asp-action="Index" class="btn btn-sm btn-primary">Back</a></h2>
 <form method="post">
-    @Html.TextBoxFor(i => i.ItemName, new { @type = "string", @required = true })
+    @Html.TextBoxFor(i => i.ItemName, new { @type = "string", @required = true, @placeholder = "Enter name here" })
     
         <button type="submit" class="btn btn-sm btn-primary">Get Store Item</button>
    
@@ -14,6 +14,6 @@
     <p>Value: 0</p>
     }
 else{
-    <p>Value: @ViewBag.Max</p>
+    <p>Value: $@ViewBag.Max</p>
     }
 

@@ -5,9 +5,9 @@
 
 <form asp-action="AddStoreItem" method="post">
  
-        @Html.TextBoxFor(i => i.ItemName, new { @type = "string", @required = true })
+        @Html.TextBoxFor(i => i.ItemName, new { @type = "string", @required = true,  @placeholder = "Enter name here" })
  
-        @Html.TextBoxFor(i => i.Cost, new { @type = "number", @required = true })
+        @Html.TextBoxFor(i => i.Cost, new { @type = "number", @required = true, @placeholder = "Enter cost here" })
    
    
         <button type="submit" class="btn btn-sm btn-primary">Add</button>
@@ -28,7 +28,7 @@
             <tr>
                 <td>@Model.Id.ToString().PadLeft(3, '0')</td>
                 <td>@Model.ItemName</td>
-                <td>@Model.Cost</td>
+                <td>$@Model.Cost</td>
             </tr>
         </tbody>
     </table>
