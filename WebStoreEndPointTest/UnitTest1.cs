@@ -20,6 +20,19 @@ namespace WebStoreEndPointTest
             _controller = new WebStoreController(_service, _webHostEnvironment);
         }
 
+
+        [Test]
+        public void MaxGroupTableStoreItemTest()
+        {
+            /* new StoreItem { Id = 1, ItemName = "Table", Cost = 20 },
+             new StoreItem { Id = 2, ItemName = "Table", Cost = 2 },
+             new StoreItem { Id = 3, ItemName = "Chair", Cost = 96 },
+             new StoreItem { Id = 4, ItemName = "Lamp", Cost = 25 },*/
+
+            var returnString = _service.GetMaxGroup().ToList();
+
+            Assert.AreEqual(returnString.First().Cost, 22);
+        }
         [Test]
         public void Single_FindsExistingRecord_ByIdTest()
         {
@@ -41,9 +54,15 @@ namespace WebStoreEndPointTest
         public void EditStoreItemTest()
         {
             var repo = _controller.Get().FirstOrDefault();
-            StoreItem testSI = new StoreItem { Id = repo.Id, ItemName = "NewTestName", Cost = repo.Cost };
+            string itemName = repo.ItemName;
+            StoreItem testSI = new StoreItem { Id = repo.Id, ItemName = "Test", Cost = repo.Cost };
             var returnObj = _service.UpdateStoreItem(testSI);
             Assert.AreNotEqual(repo.ItemName, returnObj.ItemName);
+            Assert.AreEqual(repo.Cost, returnObj.Cost);
+            Assert.AreEqual(repo.Id, returnObj.Id);
+            testSI = new StoreItem { Id = repo.Id, ItemName = itemName, Cost = repo.Cost };
+            returnObj = _service.UpdateStoreItem(testSI);
+            Assert.AreEqual(repo.ItemName, returnObj.ItemName);
             Assert.AreEqual(repo.Cost, returnObj.Cost);
             Assert.AreEqual(repo.Id, returnObj.Id);
         }
@@ -70,17 +89,6 @@ namespace WebStoreEndPointTest
             Assert.AreEqual(retInt, 100);
         }
 
-        [Test]
-        public void MaxGroupTableStoreItemTest()
-        {
-               /* new StoreItem { Id = 1, ItemName = "Table", Cost = 20 },
-                new StoreItem { Id = 2, ItemName = "Table", Cost = 2 },
-                new StoreItem { Id = 3, ItemName = "Chair", Cost = 96 },
-                new StoreItem { Id = 4, ItemName = "Lamp", Cost = 25 },*/
-
-            var returnString = _service.GetMaxGroup().ToList();
-
-            Assert.AreEqual(returnString.First().Cost,22);
-        }
+      
     }
 }
