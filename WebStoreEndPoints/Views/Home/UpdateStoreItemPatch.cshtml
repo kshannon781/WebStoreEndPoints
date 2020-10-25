@@ -1,0 +1,18 @@
+﻿@model WebStoreEndPoints.Models.StoreItem
+@{ Layout = "_Layout"; ViewBag.Title = "Update a Store Item from PATCH request";}
+
+
+<h2>Update a Store Item from Patch request <a asp-action="Index" class="btn btn-sm btn-secondary">Back</a></h2>
+<form method="post">
+    <div class="form-group">
+        <label asp-for="ItemName"></label>
+        <input class="form-control" asp-for="ItemName" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Cost"></label>
+        <input class="form-control" asp-for="Cost" />
+    </div>
+    <div class="text-center panel-body">
+        <button type="submit" class="btn btn-sm btn-primary">Update</button>
+    </div>
+</form>
