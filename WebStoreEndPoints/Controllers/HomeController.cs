@@ -190,5 +190,17 @@ namespace WebStoreEndPoints.Controllers
             return RedirectToAction("Index");
         }
 
+        public async Task<IActionResult> DeleteStore(int id)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.DeleteAsync("https://webstoreendpoints20201024213721.azurewebsites.net/api/webstore/" + id))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                }
+            }
+            return RedirectToAction("Index");
+        }
+
     }
 }

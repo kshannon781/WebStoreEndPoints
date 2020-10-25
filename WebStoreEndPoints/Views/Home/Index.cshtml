@@ -33,10 +33,10 @@
                     </a>
                 </td>
                 <td>
-                    <form asp-action="DeleteStoreItem" method="post">
-                        <input type="hidden" value="@r.Id" name="StoreItemId" />
+                    <a asp-action="DeleteStore" asp-route-id="@r.Id">
                         <b>Delete</b>
-                    </form>
+                    </a>
+                 
                 </td>
             </tr>
         }
