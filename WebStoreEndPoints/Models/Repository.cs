@@ -115,8 +115,8 @@ namespace WebStoreEndPoints.Models
             var query = from item in items.Values
                         group item by item.ItemName into itemGroup
                         select itemGroup.Key;
-          
-            return query.ToList();
+            var tempList = query.Distinct().ToList();
+            return tempList;
         }
 
       
