@@ -29,6 +29,19 @@ namespace WebStoreEndPoints.Controllers
         }
 
         [HttpPost]
+        public async Task<IActionResult> RetIndex()
+        {
+            List<StoreItem> storeList = new List<StoreItem>();
+            using (var httpClient = new HttpClient())
+            {
+                using var response = await httpClient.GetAsync("https://webstoreendpoints20201024213721.azurewebsites.net/api/webstore");
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                storeList = JsonConvert.DeserializeObject<List<StoreItem>>(apiResponse);
+            }
+            return RedirectToAction("Index",storeList);
+        }
+
+        [HttpPost]
         public async Task<IActionResult> Get(int id)
         {
             StoreItem storeItem = new StoreItem();
@@ -72,14 +85,14 @@ namespace WebStoreEndPoints.Controllers
 
         //public ViewResult GetMaxPriceGroup() => View();
         //[HttpPost]
-        public async Task<IActionResult> GetMaxPriceGroup(StoreItem storeItem)
+        public async Task<IActionResult> GetMaxPriceGroup()
         {
-            List<StoreItem> storeList = new List<StoreItem>();
+            List<StoreItemTemp> storeList = new List<StoreItemTemp>();
             using (var httpClient = new HttpClient())
             {
                 using var response = await httpClient.GetAsync("https://webstoreendpoints20201024213721.azurewebsites.net/api/webstore/getmaxgroup");
                 string apiResponse = await response.Content.ReadAsStringAsync();
-                storeList = JsonConvert.DeserializeObject<List<StoreItem>>(apiResponse);
+                storeList = JsonConvert.DeserializeObject<List<StoreItemTemp>>(apiResponse);
             }
             return View(storeList);
 

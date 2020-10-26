@@ -15,6 +15,6 @@ namespace WebStoreEndPoints.Models
         void DeleteStoreItem(int id);
         int GetMax(string name);
         List<string> GetListItems();
-        IEnumerable<StoreItem> GetMaxGroup();
+        IEnumerable<StoreItemTemp> GetMaxGroup();
     }
 }

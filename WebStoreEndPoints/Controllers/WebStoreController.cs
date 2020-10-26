@@ -52,7 +52,7 @@ namespace WebStoreEndPoints.Controllers
         [HttpGet]
         [Produces("application/json")]
         [Route("[action]")]
-        public IEnumerable<StoreItem> GetMaxGroup() => repository.GetMaxGroup();
+        public IEnumerable<StoreItemTemp> GetMaxGroup() => repository.GetMaxGroup();
 
         [HttpGet("{id}")]
         public StoreItem Get(int id) => repository[id]; //get by single id 
