@@ -151,7 +151,7 @@ namespace WebStoreEndPoints.Controllers
                 {
                     { new StringContent(storeItem.Id.ToString()), "Id" },
                     { new StringContent(storeItem.ItemName), "Name" },
-                    { new StringContent(storeItem.Cost.ToString()), "Cost" }
+                    { new StringContent(String.Format("{0:C2}", IntCheckNoResponse(storeItem.Cost.Replace(",", "").Replace("$", "").Trim()))), "Cost" }
                 };
 
                 using var response = await httpClient.PutAsync(liveAddress, content);
