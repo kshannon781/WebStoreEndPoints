@@ -20,26 +20,29 @@ namespace WebStoreEndPointTest
             _controller = new WebStoreController(_service, _webHostEnvironment);
         }
 
-
-        [Test]
-        public void MaxGroupTableStoreItemTest()
-        {
-            /* new StoreItem { Id = 1, ItemName = "Table", Cost = 20 },
-             new StoreItem { Id = 2, ItemName = "Table", Cost = 2 },
-             new StoreItem { Id = 3, ItemName = "Chair", Cost = 96 },
-             new StoreItem { Id = 4, ItemName = "Lamp", Cost = 25 },*/
-
-            var returnString = _service.GetMaxGroup().ToList();
-
-            Assert.AreEqual(returnString.First().Cost, "350");
-        }
         [Test]
         public void Single_FindsExistingRecord_ByIdTest()
         {
             var repo = _controller.Get().FirstOrDefault().Id;
-            Assert.AreEqual(1, repo);
+            Assert.IsNotNull(repo);
         }
 
+        [Test]
+        public void MaxGroupTableStoreItemTest()
+        {
+            /* new StoreItem {Id = 1, ItemName="ITEM 1", Cost="100"},
+                new StoreItem {Id = 2, ItemName="ITEM 2", Cost="200"},
+                new StoreItem {Id = 3, ItemName="ITEM 1", Cost="250"},
+                new StoreItem {Id = 4, ItemName="ITEM 3", Cost="300"},
+                new StoreItem {Id = 5, ItemName="ITEM 4", Cost="50"},
+                new StoreItem {Id = 6, ItemName="ITEM 4", Cost="40"},
+                new StoreItem {Id = 7, ItemName="ITEM 2", Cost="200"},,*/
+
+            var returnString = _service.GetMaxGroup().ToList();
+
+            Assert.AreEqual(returnString.First().Cost, "400");
+        }
+       
         [Test]
         public void AddStoreItemTest()
         {
@@ -82,10 +85,10 @@ namespace WebStoreEndPointTest
         [Test]
         public void MaxCostStoreItemTest()
         {
-            StoreItem testSI = new StoreItem { Id = int.MaxValue, ItemName = "testItem", Cost = "100" };
+            StoreItem testSI = new StoreItem { Id = 9, ItemName = "testItem", Cost = "100" };
             var returnObj = _service.AddStoreItem(testSI);
             var retInt = _service.GetMax("testItem");
-            _service.DeleteStoreItem(int.MaxValue);
+            _service.DeleteStoreItem(9);
             Assert.AreEqual(retInt, "$100.00");
         }
 
