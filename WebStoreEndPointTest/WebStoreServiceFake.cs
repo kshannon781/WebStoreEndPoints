@@ -59,8 +59,8 @@ namespace WebStoreEndPointTest
             {
                 double sumVal = 0;
                 var query = from item in items.Values
-                            group item by item.ItemName into itemGroup
-                            where itemGroup.Key == max
+                            group item by item.ItemName.ToLower() into itemGroup
+                            where String.Equals(itemGroup.Key,max, StringComparison.CurrentCultureIgnoreCase)
                             select itemGroup.Sum(t => IntCheckNoResponse(t.Cost.Replace(",", "").Replace("$", "").Trim()));
 
                 foreach (var num in query)
@@ -85,7 +85,7 @@ namespace WebStoreEndPointTest
         public List<string> GetListItems()
         {
             var query = from item in items.Values
-                        group item by item.ItemName into itemGroup
+                        group item by item.ItemName.ToLower() into itemGroup
                         select itemGroup.Key;
 
             return query.ToList();
@@ -93,10 +93,10 @@ namespace WebStoreEndPointTest
         public IEnumerable<StoreItemTemp> GetMaxGroup()
         {
             var query = from item in items.Values
-                        group item by item.ItemName into itemGroup
+                        group item by item.ItemName.ToLower() into itemGroup
                         select new
                         {
-                            ItemName = itemGroup.Key.ToString(),
+                            ItemName = itemGroup.Key.ToString().ToUpper(),
                             Cost = itemGroup.Sum(t => Convert.ToInt32(Regex.Match(t.Cost.Replace(",", "").Trim(), @"\d+").Value)),
                         };
             int count = 1;
