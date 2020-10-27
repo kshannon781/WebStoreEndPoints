@@ -10,7 +10,8 @@ namespace WebStoreEndPoints.Models
         public int Id { get; set; }
 
         public string ItemName { get; set; }
-        public int  Cost { get; set; }
+
+        public string  Cost { get; set; }
         
 
     }

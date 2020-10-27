@@ -3,7 +3,6 @@
 
 
 <h2>All Store Items</h2>
-<a asp-action="Index" class="btn btn-sm btn-primary">Home</a>
 
 <a asp-action="AddStoreItem" class="btn btn-sm btn-primary">Add Item</a>
 
@@ -28,7 +27,7 @@
             <tr>
                 <td>@r.Id.ToString().PadLeft(3,'0')</td>
                 <td>@r.ItemName</td>
-                <td>$@r.Cost</td>
+                <td>@r.Cost</td>
                 <td>
                     <a asp-action="UpdateStoreItemPatch" asp-route-id="@r.Id">
                         <b>Update</b>

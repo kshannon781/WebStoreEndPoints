@@ -31,7 +31,7 @@ namespace WebStoreEndPointTest
 
             var returnString = _service.GetMaxGroup().ToList();
 
-            Assert.AreEqual(returnString.First().Cost, 22);
+            Assert.AreEqual(returnString.First().Cost, "350");
         }
         [Test]
         public void Single_FindsExistingRecord_ByIdTest()
@@ -43,7 +43,7 @@ namespace WebStoreEndPointTest
         [Test]
         public void AddStoreItemTest()
         {
-            var testItem = "Table"; var testCost = 20;
+            var testItem = "Table"; var testCost = "20";
              StoreItem testSI = new StoreItem { Id = 0, ItemName = testItem, Cost = testCost };
             var returnObj = _service.AddStoreItem(testSI);
             Assert.AreEqual(testItem, returnObj.ItemName);
@@ -82,11 +82,11 @@ namespace WebStoreEndPointTest
         [Test]
         public void MaxCostStoreItemTest()
         {
-            StoreItem testSI = new StoreItem { Id = int.MaxValue, ItemName = "testItem", Cost = 100 };
+            StoreItem testSI = new StoreItem { Id = int.MaxValue, ItemName = "testItem", Cost = "100" };
             var returnObj = _service.AddStoreItem(testSI);
             var retInt = _service.GetMax("testItem");
             _service.DeleteStoreItem(int.MaxValue);
-            Assert.AreEqual(retInt, 100);
+            Assert.AreEqual(retInt, "$100.00");
         }
 
       

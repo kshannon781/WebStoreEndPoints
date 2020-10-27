@@ -42,7 +42,7 @@ namespace WebStoreEndPoints.Controllers
         [HttpGet]
         [Produces("application/json")]
         [Route("[action]/{name}")]
-        public int GetMaxPrice(string name) => repository.GetMax(name);
+        public string GetMaxPrice(string name) => repository.GetMax(name);
 
         [HttpGet]
         [Produces("application/json")]

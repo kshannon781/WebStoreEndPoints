@@ -13,7 +13,7 @@ namespace WebStoreEndPoints.Models
         StoreItem AddStoreItem(StoreItem storeItems);
         StoreItem UpdateStoreItem(StoreItem storeItems);
         void DeleteStoreItem(int id);
-        int GetMax(string name);
+        string GetMax(string name);
         List<string> GetListItems();
         IEnumerable<StoreItemTemp> GetMaxGroup();
     }
