@@ -7,7 +7,7 @@
  
         @Html.TextBoxFor(i => i.ItemName, new { @type = "string", @required = true,  @placeholder = "Enter name here" })
  
-        @Html.TextBoxFor(i => i.Cost, new { @type = "string", @required = true, @placeholder = "Enter cost here", @min = "0" })
+        @Html.TextBoxFor(i => i.Cost, new { @type = "number", @required = true, @placeholder = "Enter cost here", @min = "0", @max = "99999"})
    
    
         <button type="submit" class="btn btn-sm btn-primary">Add</button>

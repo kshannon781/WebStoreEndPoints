@@ -117,7 +117,6 @@ namespace WebStoreEndPoints.Models
 
         public StoreItem UpdateStoreItem(StoreItem storeItem) => AddStoreItem(storeItem);
        
-      
         public List<string> GetListItems()
         {
             var query = from item in items.Values

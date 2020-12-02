@@ -23,7 +23,7 @@ namespace WebStoreEndPoints.Controllers
             List<StoreItem> storeList = new List<StoreItem>();
             using (var httpClient = new HttpClient())
             {
-                using var response = await httpClient.GetAsync(liveAddress);
+                using var response = await httpClient.GetAsync(localAddress);
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 storeList = JsonConvert.DeserializeObject<List<StoreItem>>(apiResponse);
             }
@@ -36,7 +36,7 @@ namespace WebStoreEndPoints.Controllers
             List<StoreItem> storeList = new List<StoreItem>();
             using (var httpClient = new HttpClient())
             {
-                using var response = await httpClient.GetAsync(liveAddress);
+                using var response = await httpClient.GetAsync(localAddress);
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 storeList = JsonConvert.DeserializeObject<List<StoreItem>>(apiResponse);
             }
@@ -49,7 +49,7 @@ namespace WebStoreEndPoints.Controllers
             StoreItem storeItem = new StoreItem();
             using (var httpClient = new HttpClient())
             {
-                using var response = await httpClient.GetAsync(liveAddress + id);
+                using var response = await httpClient.GetAsync(localAddress + id);
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 storeItem = JsonConvert.DeserializeObject<StoreItem>(apiResponse);
             }
@@ -63,7 +63,7 @@ namespace WebStoreEndPoints.Controllers
             StoreItem storeItem = new StoreItem();
             using (var httpClient = new HttpClient())
             {
-                using var response = await httpClient.GetAsync(liveAddress + id);
+                using var response = await httpClient.GetAsync(localAddress + id);
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 storeItem = JsonConvert.DeserializeObject<StoreItem>(apiResponse);
             }
@@ -77,7 +77,7 @@ namespace WebStoreEndPoints.Controllers
         {
             using (var httpClient = new HttpClient())
             {
-                using var response = await httpClient.GetAsync(liveAddress + "getmaxprice/" + itemName);
+                using var response = await httpClient.GetAsync(localAddress + "getmaxprice/" + itemName);
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 ViewBag.Max = (apiResponse);
             }
@@ -92,7 +92,7 @@ namespace WebStoreEndPoints.Controllers
             List<StoreItemTemp> storeList = new List<StoreItemTemp>();
             using (var httpClient = new HttpClient())
             {
-                using var response = await httpClient.GetAsync(liveAddress + "getmaxgroup");
+                using var response = await httpClient.GetAsync(localAddress + "getmaxgroup");
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 storeList = JsonConvert.DeserializeObject<List<StoreItemTemp>>(apiResponse);
             }
@@ -115,7 +115,7 @@ namespace WebStoreEndPoints.Controllers
                 
                 StringContent content = new StringContent(JsonConvert.SerializeObject(storeItem), Encoding.UTF8, "application/json");
 
-                using var response = await httpClient.PostAsync(liveAddress, content);
+                using var response = await httpClient.PostAsync(localAddress, content);
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     receivedReservation = JsonConvert.DeserializeObject<StoreItem>(apiResponse);
@@ -133,7 +133,7 @@ namespace WebStoreEndPoints.Controllers
             StoreItem reservation = new StoreItem();
             using (var httpClient = new HttpClient())
             {
-                using var response = await httpClient.GetAsync(liveAddress + id);
+                using var response = await httpClient.GetAsync(localAddress + id);
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 reservation = JsonConvert.DeserializeObject<StoreItem>(apiResponse);
 
@@ -154,7 +154,7 @@ namespace WebStoreEndPoints.Controllers
                     { new StringContent(String.Format("{0:C2}", IntCheckNoResponse(storeItem.Cost.Replace(",", "").Replace("$", "").Trim()))), "Cost" }
                 };
 
-                using var response = await httpClient.PutAsync(liveAddress, content);
+                using var response = await httpClient.PutAsync(localAddress, content);
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 ViewBag.Result = "Success";
                 recievedReservation = JsonConvert.DeserializeObject<StoreItem>(apiResponse);
@@ -167,7 +167,7 @@ namespace WebStoreEndPoints.Controllers
             StoreItem storeItem = new StoreItem();
             using (var httpClient = new HttpClient())
             {
-                using var response = await httpClient.GetAsync(liveAddress + id);
+                using var response = await httpClient.GetAsync(localAddress + id);
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 storeItem = JsonConvert.DeserializeObject<StoreItem>(apiResponse);
             }
@@ -181,7 +181,7 @@ namespace WebStoreEndPoints.Controllers
             {
                 var request = new HttpRequestMessage
                 {
-                    RequestUri = new Uri(liveAddress + id),
+                    RequestUri = new Uri(localAddress + id),
                     Method = new HttpMethod("Patch"),
                     Content = new StringContent("[{ \"op\": \"replace\", \"path\": \"itemName\", \"value\": \"" + storeItem.ItemName + "\"},{ \"op\": \"replace\", \"path\": \"cost\", \"value\": \"" + storeItem.Cost + "\"}]", Encoding.UTF8, "application/json")
                 };
@@ -206,7 +206,7 @@ namespace WebStoreEndPoints.Controllers
         {
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.DeleteAsync(liveAddress + StoreItemId))
+                using (var response = await httpClient.DeleteAsync(localAddress + StoreItemId))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                 }
@@ -219,7 +219,7 @@ namespace WebStoreEndPoints.Controllers
         {
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.DeleteAsync(liveAddress + id))
+                using (var response = await httpClient.DeleteAsync(localAddress + id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                 }
